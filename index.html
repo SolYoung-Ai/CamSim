@@ -526,7 +526,34 @@ const LENSES = [
  {id:"l85", brand:"Panasonic", model:"LUMIX S 85mm F1.8", mount:"L", fl:85, ap:1.8, stab:false, mfd:0.80, macro:0.13},
  {id:"l2470", brand:"Panasonic", model:"LUMIX S 24-70mm F2.8", mount:"L", fl:[24,70], ap:2.8, stab:true, mfd:0.37, macro:0.25},
  {id:"l70200", brand:"Panasonic", model:"LUMIX S 70-200mm F2.8", mount:"L", fl:[70,200], ap:2.8, stab:true, mfd:0.65, macro:0.2},
- {id:"q328", brand:"Leica", model:"Summilux 28mm F1.7（内置）", mount:"Q3", fl:28, ap:1.7, stab:true, mfd:0.17, macro:0.5}
+ {id:"q328", brand:"Leica", model:"Summilux 28mm F1.7（内置）", mount:"Q3", fl:28, ap:1.7, stab:true, mfd:0.17, macro:0.5},
+ /* Sony E 补充 */
+ {id:"fe1418", brand:"Sony", model:"FE 14mm F1.8 GM", mount:"E", fl:14, ap:1.8, stab:false, mfd:0.20, macro:0.12},
+ {id:"fe2414", brand:"Sony", model:"FE 24mm F1.4 GM", mount:"E", fl:24, ap:1.4, stab:false, mfd:0.24, macro:0.17},
+ {id:"fe3514", brand:"Sony", model:"FE 35mm F1.4 GM", mount:"E", fl:35, ap:1.4, stab:false, mfd:0.24, macro:0.23},
+ {id:"fe5012", brand:"Sony", model:"FE 50mm F1.2 GM", mount:"E", fl:50, ap:1.2, stab:false, mfd:0.40, macro:0.18},
+ {id:"fe8514", brand:"Sony", model:"FE 85mm F1.4 GM", mount:"E", fl:85, ap:1.4, stab:false, mfd:0.84, macro:0.13},
+ {id:"fe4025", brand:"Sony", model:"FE 40mm F2.5 G", mount:"E", fl:40, ap:2.5, stab:false, mfd:0.25, macro:0.15},
+ {id:"fe100400", brand:"Sony", model:"FE 100-400mm F4.5-5.6 GM", mount:"E", fl:[100,400], ap:4.5, stab:true, mfd:0.98, macro:0.35},
+ {id:"fe200600", brand:"Sony", model:"FE 200-600mm F5.6-6.3 G", mount:"E", fl:[200,600], ap:5.6, stab:true, mfd:2.4, macro:0.24},
+ /* Canon RF 补充 */
+ {id:"rf5012", brand:"Canon", model:"RF 50mm F1.2L", mount:"RF", fl:50, ap:1.2, stab:false, mfd:0.40, macro:0.19},
+ {id:"rf2870", brand:"Canon", model:"RF 28-70mm F2L", mount:"RF", fl:[28,70], ap:2.0, stab:false, mfd:0.39, macro:0.17},
+ {id:"rf1535", brand:"Canon", model:"RF 15-35mm F2.8L", mount:"RF", fl:[15,35], ap:2.8, stab:true, mfd:0.28, macro:0.17},
+ {id:"rf24105", brand:"Canon", model:"RF 24-105mm F4L IS", mount:"RF", fl:[24,105], ap:4.0, stab:true, mfd:0.20, macro:0.24},
+ {id:"rf852", brand:"Canon", model:"RF 85mm F2 Macro IS", mount:"RF", fl:85, ap:2.0, stab:true, mfd:0.35, macro:0.5},
+ /* Nikon Z 补充 */
+ {id:"z5012", brand:"Nikon", model:"Z 50mm F1.2 S", mount:"Z", fl:50, ap:1.2, stab:false, mfd:0.45, macro:0.15},
+ {id:"z1424", brand:"Nikon", model:"Z 14-24mm F2.8 S", mount:"Z", fl:[14,24], ap:2.8, stab:false, mfd:0.28, macro:0.14},
+ {id:"z24120", brand:"Nikon", model:"Z 24-120mm F4 S", mount:"Z", fl:[24,120], ap:4.0, stab:true, mfd:0.5, macro:0.27},
+ {id:"z402", brand:"Nikon", model:"Z 40mm F2", mount:"Z", fl:40, ap:2.0, stab:false, mfd:0.29, macro:0.16},
+ /* Fujifilm 补充 */
+ {id:"xf50140", brand:"Fujifilm", model:"XF 50-140mm F2.8", mount:"XF", fl:[50,140], ap:2.8, stab:true, mfd:1.0, macro:0.12},
+ {id:"xf1024", brand:"Fujifilm", model:"XF 10-24mm F4", mount:"XF", fl:[10,24], ap:4.0, stab:true, mfd:0.24, macro:0.16},
+ {id:"xf1855", brand:"Fujifilm", model:"XF 18-55mm F2.8-4", mount:"XF", fl:[18,55], ap:2.8, stab:true, mfd:0.30, macro:0.15},
+ {id:"xc352", brand:"Fujifilm", model:"XC 35mm F2", mount:"XF", fl:35, ap:2.0, stab:false, mfd:0.35, macro:0.17},
+ /* Panasonic L 补充 */
+ {id:"l5014", brand:"Panasonic", model:"LUMIX S 50mm F1.4", mount:"L", fl:50, ap:1.4, stab:false, mfd:0.45, macro:0.15}
 ];
 const FLASHES = [
  {id:"none", brand:"—", model:"没有闪光灯", gn:null, ttl:false, hss:false, zoom:false, power:[], wireless:false, note:"仅使用现场光"},
@@ -790,8 +817,8 @@ function apertureFor(ctx,mode,maxAp){
     else if(cat==="微距") ap=8;
     else ap=deep?11:8;
   } else ap=AP_DEFAULT[cat]||4;
-  if(mode==="effect"&&!shallow&&wide.includes(cat)) ap=Math.min(maxAp,1.8);
-  if(mode==="quality"&&!deep&&!["风景","建筑","产品","星空","微距"].includes(cat)) ap=Math.min(maxAp,2.8);
+  if(mode==="effect"&&!shallow&&wide.includes(cat)) ap=maxAp;
+  if(mode==="quality"&&!deep&&!["风景","建筑","产品","星空","微距"].includes(cat)) ap=round2(Math.min(maxAp*2,8));
   return round2(ap);
 }
 function shutterFor(ctx,mode){
@@ -825,6 +852,7 @@ function computePlan(ctx,mode){
   const maxAp=lensMaxAp(ctx.lens)||fixedAp(cam)||1.8;
   const shallow=hasLook(ctx,"shallow")||hasLook(ctx,"cinematic");
   let ap=apertureFor(ctx,mode,maxAp);
+  ap=Math.max(ap,maxAp); /* 不得小于镜头最大光圈 */
   let t=shutterFor(ctx,mode);
   const isoCap = mode==="effect"? maxIso : (mode==="quality"? base*4 : 3200);
   const still=isStillScene(ctx);
