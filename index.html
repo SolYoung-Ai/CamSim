@@ -103,6 +103,10 @@ h3{font-size:22px;font-weight:600;letter-spacing:-.02em}
 /* 首页 Hero */
 .hero{padding:120px 0 80px;text-align:center}
 .hero .lead{margin:22px auto 38px}
+.hero.slim{padding:88px 0 40px}
+.hero.slim .lead{margin:18px auto 30px;max-width:560px}
+.btn-lg{font-size:17px;padding:15px 32px}
+.hero.slim .btn{margin-top:4px}
 
 /* 步骤（首页三块） */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
@@ -480,7 +484,7 @@ const CAMERAS = [
  {id:"a7cr", brand:"Sony", model:"A7CR", mount:"E", ss:"FF", mp:61, iso:[100,32000], sync:1/200, ibis:7, shutter:"1/4000", exp:102400, eye:true, det:"人物/动物/鸟", video:"4K60", weight:509, raw:"RAW/压缩RAW", alias:"a7cr a7cr1"},
  {id:"a1", brand:"Sony", model:"A1", mount:"E", ss:"FF", mp:50.1, iso:[100,32000], sync:1/300, ibis:5.5, shutter:"1/8000", exp:102400, eye:true, det:"人物/动物/鸟/车", video:"8K30", weight:737, raw:"RAW/压缩RAW", alias:"a1 a1m1"},
  {id:"a9iii", brand:"Sony", model:"A9 III", mount:"E", ss:"FF", mp:24.6, iso:[160,51200], sync:1/180, ibis:5.5, shutter:"1/8000", exp:204800, eye:true, det:"人物/动物/鸟/车", video:"4K120", weight:756, raw:"RAW/压缩RAW"},
- {id:"a6700", brand:"Sony", model:"A6700", mount:"E", ss:"APS", mp:26, iso:[100,32000], sync:1/160, ibis:7, shutter:"1/4000", exp:102400, eye:true, det:"人物/动物/鸟", video:"4K60", weight:493, raw:"RAW/压缩RAW", alias:"a6700 zv-e10"},
+ {id:"a6700", brand:"Sony", model:"A6700", mount:"E", ss:"APS", mp:26, iso:[100,32000], sync:1/160, ibis:7, shutter:"1/4000", exp:102400, eye:true, det:"人物/动物/鸟", video:"4K60", weight:493, raw:"RAW/压缩RAW", alias:"a6700"},
  {id:"a6600", brand:"Sony", model:"A6600", mount:"E", ss:"APS", mp:24.2, iso:[100,32000], sync:1/160, ibis:5, shutter:"1/4000", exp:102400, eye:true, det:"人物/动物", video:"4K30", weight:503, raw:"RAW/压缩RAW", alias:"a6600"},
  {id:"zve10", brand:"Sony", model:"ZV-E10", mount:"E", ss:"APS", mp:25, iso:[100,32000], sync:1/160, ibis:0, shutter:"1/4000", exp:102400, eye:true, det:"人物", video:"4K60", weight:343, raw:"RAW", alias:"zve10 zv-e10"},
  {id:"zve1", brand:"Sony", model:"ZV-E1", mount:"E", ss:"FF", mp:12.1, iso:[80,102400], sync:1/250, ibis:5.5, shutter:"1/8000", exp:409600, eye:true, det:"人物", video:"4K120", weight:456, raw:"RAW/压缩RAW", alias:"zve1 zv-e1"},
@@ -558,10 +562,10 @@ const LENSES = [
  {id:"rf35", brand:"Canon", model:"RF 35mm F1.8", mount:"RF", fl:35, ap:1.8, stab:true, mfd:0.17, macro:0.5},
  {id:"efs1855", brand:"Canon", model:"EF-S 18-55mm F4-5.6 IS STM", mount:"EF-S", fl:[18,55], ap:5.6, stab:true, mfd:0.25, macro:0.21},
  {id:"efs55250", brand:"Canon", model:"EF-S 55-250mm F4-5.6 IS", mount:"EF-S", fl:[55,250], ap:5.6, stab:true, mfd:1.1, macro:0.29},
- {id:"ef5018", brand:"Canon", model:"EF 50mm F1.8 STM", mount:"EF-S", fl:50, ap:1.8, stab:false, mfd:0.35, macro:0.21},
- {id:"ef8518", brand:"Canon", model:"EF 85mm F1.8 USM", mount:"EF-S", fl:85, ap:1.8, stab:false, mfd:0.85, macro:0.13},
- {id:"ef24105", brand:"Canon", model:"EF 24-105mm F4L IS", mount:"EF-S", fl:[24,105], ap:4, stab:true, mfd:0.45, macro:0.22},
- {id:"ef100m", brand:"Canon", model:"EF 100mm F2.8L Macro IS", mount:"EF-S", fl:100, ap:2.8, stab:true, mfd:0.3, macro:1.0},
+ {id:"ef5018", brand:"Canon", model:"EF 50mm F1.8 STM", mount:"EF", fl:50, ap:1.8, stab:false, mfd:0.35, macro:0.21},
+ {id:"ef8518", brand:"Canon", model:"EF 85mm F1.8 USM", mount:"EF", fl:85, ap:1.8, stab:false, mfd:0.85, macro:0.13},
+ {id:"ef24105", brand:"Canon", model:"EF 24-105mm F4L IS", mount:"EF", fl:[24,105], ap:4, stab:true, mfd:0.45, macro:0.22},
+ {id:"ef100m", brand:"Canon", model:"EF 100mm F2.8L Macro IS", mount:"EF", fl:100, ap:2.8, stab:true, mfd:0.3, macro:1.0},
  {id:"z50", brand:"Nikon", model:"Z 50mm F1.8", mount:"Z", fl:50, ap:1.8, stab:false, mfd:0.40, macro:0.15},
  {id:"z85", brand:"Nikon", model:"Z 85mm F1.8", mount:"Z", fl:85, ap:1.8, stab:false, mfd:0.80, macro:0.13},
  {id:"z2470", brand:"Nikon", model:"Z 24-70mm F2.8", mount:"Z", fl:[24,70], ap:2.8, stab:false, mfd:0.38, macro:0.25},
@@ -654,7 +658,7 @@ const CAT_FOCAL = { // 该子场景推荐的等效焦段（全画幅），用于
  "室内空间":[16,24], "建筑夜景":[16,24], "街头纪实":[28,35,50], "雨天街头":[28,35], "夜街":[28,35,50], "餐厅拍摄":[35,50], "自然光食物":[35,50],
  "饮品":[50,60], "烘焙":[35,50], "团队运动":[24,35,70], "单人竞技":[70,135], "赛车":[70,200], "水上运动":[70,200], "宠物室内":[35,50],
  "宠物户外":[50,85], "宠物运动":[70,200], "旅行人像":[35,50], "城市风景":[16,24], "旅途随拍":[24,35], "城市夜景":[16,24], "夜景人像":[35,50,85],
- "烟花":[24,35], "灯光节":[16,35], "银河":[14,16,20], "星轨":[14,24], "星空人像":[20,24], "演唱会":[70,135], "剧院演出":[70,135],
+ "烟花":[24,35], "灯光节":[16,35], "星轨":[14,24], "星空人像":[20,24], "演唱会":[70,135], "剧院演出":[70,135],
  "现场活动":[24,35,70], "室内活动":[24,35], "户外活动":[24,35], "宴会":[35,50], "婚礼仪式":[24,35,50], "迎宾":[50,85], "婚纱外景":[35,50,85],
  "昆虫":[90,100], "花卉":[50,90], "产品微距":[90,100], "水滴":[90,100], "鸟类":[200,400], "哺乳动物":[200,400], "弱光动物":[200,400],
  "短视频口播":[35,50], "vlog":[24,35], "宣传片":[24,35,50], "纪录片":[24,35], "直播":[24,35], "慢动作":[24,35]
@@ -1280,101 +1284,27 @@ const I = {
    ========================================================= */
 function renderHome(){
   $("#app").innerHTML=`
-  <section class="hero">
+  <section class="hero slim">
     <div class="wrap">
       <p class="eyebrow" data-r>${t("你今天想拍什么？")}</p>
       <h1>${Store.lang==="en"?"From intent, to exposure.":"从目标，到参数。"}</h1>
-      <p class="lead" data-r>${t("选择你的相机、镜头和拍摄场景，我们会推导出一套可以直接执行的摄影参数——你不需要懂 EV、景深或光圈快门三角。")}</p>
-      <button class="btn" data-r id="homeStart">${t("开始模拟")} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      <p class="why-note" style="margin-top:26px;font-size:13px" data-r>${t("从相机，到参数，再到现场调整。")}</p>
+      <p class="lead" data-r>${t("选好相机、镜头和场景，直接给你能用的拍摄参数——不用懂光圈快门三角。")}</p>
+      <button class="btn btn-lg" data-r id="homeStart">${t("开始模拟")} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:8px">
     <div class="wrap">
       <div class="center">
-        <p class="eyebrow" data-r>产品工作方式</p>
-        <h2 data-r>三步，开始拍摄。</h2>
+        <p class="eyebrow" data-r>${t("现场不对？")}</p>
+        <h2 data-r>微调建议，实时给。</h2>
       </div>
-      <div class="steps">
-        <div class="card step-card" data-r>
-          <div class="step-num">01</div>
-          <div class="step-title">选择设备</div>
-          <div class="step-desc">告诉我们你使用什么相机和镜头。</div>
-        </div>
-        <div class="card step-card" data-r>
-          <div class="step-num">02</div>
-          <div class="step-title">选择场景</div>
-          <div class="step-desc">告诉我们你现在准备拍什么、在什么环境下。</div>
-        </div>
-        <div class="card step-card" data-r>
-          <div class="step-num">03</div>
-          <div class="step-title">获得参数</div>
-          <div class="step-desc">获得可以直接执行的参数方案，一键复制开拍。</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:20px">
-    <div class="wrap">
-      <div class="demo-wrap" data-r>
-        <div>
-          <div class="demo-top">
-            <div>
-              <div class="demo-big">Sony A7 IV · 85mm F1.8</div>
-              <div class="demo-small">室外人像 · 阴天 · 下午</div>
-            </div>
-            <span class="demo-big" style="font-size:16px;font-weight:600">Outdoor Portrait</span>
-          </div>
-          <div class="demo-suite">
-            <div><div class="demo-big">F2.0</div><div class="demo-small">光圈</div></div>
-            <div><div class="demo-big">1/500s</div><div class="demo-small">快门</div></div>
-            <div><div class="demo-big">ISO 200</div><div class="demo-small">感光度</div></div>
-          </div>
-        </div>
-        <div>
-          <p class="eyebrow" style="margin-bottom:10px">不只是参数</p>
-          <p class="why"><b>为什么这样设置？</b></p>
-          <p class="why-note" style="margin-top:10px">阴天环境下，保持 F2.0 可以获得明显背景虚化，同时 1/500s 可以降低人物轻微动作产生的模糊，ISO 200 保证纯净画质。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:40px">
-    <div class="wrap center">
-      <p class="eyebrow" data-r>如果现场不一样呢？</p>
-      <h2 data-r>现场微调，实时给建议。</h2>
       <div class="chips" data-r id="fixChips"></div>
-      <div id="fixPanel" style="max-width:640px;margin:28px auto 0;text-align:left"></div>
+      <div id="fixPanel" style="max-width:640px;margin:22px auto 0;text-align:left"></div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:40px">
-    <div class="wrap">
-      <div class="center">
-        <p class="eyebrow" data-r>三套方案</p>
-        <h2 data-r>一次生成，三个角度。</h2>
-        <p class="lead" data-r>同一个场景，我们从「稳妥 / 画质 / 效果」三个目标各生成一套，你来选。</p>
-      </div>
-      <div class="plans">
-        <div class="card plan-card" data-r><span class="plan-tag">默认</span><div class="plan-name">自然稳妥</div><div class="plan-desc">均衡可靠，适合直接上手拍摄。</div>
-          <div class="plan-row"><span>光圈</span><b>F2.8</b></div><div class="plan-row"><span>快门</span><b>1/125s</b></div><div class="plan-row"><span>ISO</span><b>400</b></div></div>
-        <div class="card plan-card" data-r><span class="plan-tag">纯净</span><div class="plan-name">画质优先</div><div class="plan-desc">最低 ISO，画面最干净。</div>
-          <div class="plan-row"><span>光圈</span><b>F2.0</b></div><div class="plan-row"><span>快门</span><b>1/125s</b></div><div class="plan-row"><span>ISO</span><b>100</b></div></div>
-        <div class="card plan-card" data-r><span class="plan-tag">观感</span><div class="plan-name">效果优先</div><div class="plan-desc">最大化背景虚化与氛围。</div>
-          <div class="plan-row"><span>光圈</span><b>F1.8</b></div><div class="plan-row"><span>快门</span><b>1/250s</b></div><div class="plan-row"><span>ISO</span><b>800</b></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <div class="wrap center" data-r>
-      <h2>准备好开始拍了吗？</h2>
-      <button class="btn" id="ctaStart">开始模拟 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    </div>
-  </section>`;
+  <section class="section" style="padding-top:24px"></section>`;
   const fixes=[
     ["太暗","优先开大光圈或降低快门（人物静止时）","如果人物不动，可把快门降到 1/80s；若仍不足，开大光圈 1 档。若人物在动，优先提高 ISO 而非降快门。"],
     ["太亮","提高快门或缩小光圈 / 加 ND","优先提高快门到 1/1000s，其次缩小光圈 1 档。若是大光圈刚需，改用 ND 滤镜。"],
@@ -1388,7 +1318,6 @@ function renderHome(){
   function showFix(i){ const f=fixes[i]; fp.innerHTML=`<div class="card" style="padding:22px;text-align:left"><b style="font-size:15px">${f[0]}</b><div style="font-size:14px;color:var(--sub);margin-top:6px">${f[1]}</div><div style="font-size:13.5px;margin-top:10px;color:var(--fg)">${f[2]}</div></div>`; }
   $("#fixChips").addEventListener("click",e=>{ const b=e.target.closest(".chip"); if(b) showFix(+b.dataset.i); });
   $("#homeStart").onclick=()=>navigate("simulator");
-  $("#ctaStart").onclick=()=>navigate("simulator");
   initReveal();
 }
 
@@ -1444,7 +1373,7 @@ function stepCamera(){
   let list=CAMERAS;
   if(q) list=list.filter(c=>(c.brand+" "+c.model+" "+camCN(c)+" "+c.id+" "+(c.alias||"")).toLowerCase().includes(q));
   const grid=`
-    <div class="sim-head"><h2>你用什么相机？</h2><p>搜索型号，或从热门品牌中选择。</p></div>
+    <div class="sim-head"><h2>你用什么相机？</h2><p>搜索型号，或直接选品牌。</p></div>
     <div class="search">${I.search}<input id="camSearch" value="${esc(SIM.search)}" placeholder="搜索相机型号，例如 A7 IV" aria-label="搜索相机"/></div>
     <div class="lib-filter" style="margin-bottom:20px">
       <button class="lib-filter-btn ${!q?"active":""}" data-q="">全部</button>
@@ -1483,10 +1412,11 @@ function stepLens(){
     return;
   }
   const mount=cam.mount;
-  const lensList=LENSES.filter(l=>l.mount===mount);
+  const okMounts = (mount==="RF"||mount==="EF-S") ? [mount,"EF"] : [mount];
+  const lensList=LENSES.filter(l=>okMounts.includes(l.mount));
   const sel=Store.sim.lens? LENSES.find(l=>l.id===Store.sim.lens):null;
   $("#simMain").innerHTML=`
-    <div class="sim-head"><h2>你准备用什么镜头？</h2><p>${cam.brand} ${cam.model} · ${mount} 卡口。也可以选择「我还没决定」。</p></div>
+    <div class="sim-head"><h2>你准备用什么镜头？</h2><p>选一支镜头，或先跳过。</p></div>
     <div class="grid c2" style="margin-bottom:6px">
       ${lensList.map(l=>`<div class="pick ${sel&&sel.id===l.id?"selected":""}" data-id="${l.id}">
         <span class="check">${I.check}</span>
@@ -1508,7 +1438,7 @@ function stepLens(){
 function stepScene(){
   const selCat=SIM.catSel||null;
   $("#simMain").innerHTML=`
-    <div class="sim-head"><h2>你要拍什么？</h2><p>先选大类，再进一步明确子场景。</p></div>
+    <div class="sim-head"><h2>你要拍什么？</h2><p>先选大类，再选具体场景。</p></div>
     ${!selCat?`
     <div class="grid c3">
       ${SCENES.map(s=>`<div class="pick small-card" data-cat="${s.name}"><div class="pk-t">${s.name}</div></div>`).join("")}
@@ -1542,7 +1472,7 @@ function stepEnv(){
     </div>`).join("");
   const allAnswered=tmpl.q.every(q=>env[q.k]);
   $("#simMain").innerHTML=`
-    <div class="sim-head"><h2>现在是什么环境？</h2><p>根据你的场景，我们只问必要的信息。</p></div>
+    <div class="sim-head"><h2>现在是什么环境？</h2><p>按场景只问必要的几项。</p></div>
     ${body}
     <div class="sim-actions"><button class="btn ghost" id="backBtn">上一步</button>
     <div class="btn-row"><button class="btn" id="nextBtn" ${allAnswered?"":"disabled"}>继续 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>`;
@@ -1581,7 +1511,7 @@ function stepLook(){
       </div>`;
   }
   $("#simMain").innerHTML=`
-    <div class="sim-head"><h2>你想拍成什么样？</h2><p>可多选，我们会据此调整参数目标。</p></div>
+    <div class="sim-head"><h2>你想拍成什么样？</h2><p>可多选，据此调整参数。</p></div>
     <div class="grid c3">
       ${LOOKS.map(([id,label,desc])=>`<div class="pick multi ${looks.includes(id)?"selected":""}" data-look="${id}"><span class="check">${I.check}</span><div class="pk-t">${label}</div><div class="pk-s">${desc}</div></div>`).join("")}
     </div>
